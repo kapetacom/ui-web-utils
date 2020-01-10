@@ -112,7 +112,7 @@ var roundPathCorners = function (pathString: any, radius: number, useFractionalR
                 var endControl = moveTowardsFractional(curPoint, curveEnd, .5);
 
                 // Create the curve 
-                var curveCmd = ["C", startControl.x, startControl.y, endControl.x, endControl.y, curveEnd.x, curveEnd.y];
+                var curveCmd:any = ["C", startControl.x, startControl.y, endControl.x, endControl.y, curveEnd.x, curveEnd.y];
                 // Save the original point for fractional calculations
                 curveCmd["origPoint"] = curPoint;
                 resultCommands.push(curveCmd);
