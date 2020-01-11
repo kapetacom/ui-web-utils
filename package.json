@@ -1,9 +1,13 @@
 {
     "name": "@blockware/ui-web-utils",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "description": "Utility functions for implementing blockware UI",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    },
     "keywords": [
         "blockware"
     ],
@@ -19,7 +23,11 @@
     "dependencies": {
         "@types/react": "16.9.17",
         "@types/react-dom": "16.9.4",
-        "@blockware/ui-web-types": "0.0.7"
+        "@blockware/ui-web-types": "^0.0.8"
+    },
+    "peerDependencies": {
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.7.7",
@@ -29,8 +37,6 @@
         "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
         "@babel/preset-env": "^7.7.7",
         "@babel/preset-typescript": "^7.7.7",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
         "typescript": "^3.7.4"
     }
 }
