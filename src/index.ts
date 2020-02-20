@@ -13,5 +13,3 @@ export * from './svg/createHexagonPath';
 export * from './svg/SVGCornersHelper';
 
 export * from './css/classNameUtils';
-
-export * from "./svg/BasisCurve";
