@@ -6,9 +6,7 @@ export * from './httpUtils';
 
 export * from './reactUtils';
 
-export * from './svg/BasisCurve';
-
-export * from './svg/createConnectionPath';
+export * from './svg/BasisCurve'; 
 
 export * from './svg/createHexagonPath';
 

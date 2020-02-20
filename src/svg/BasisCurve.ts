@@ -1,7 +1,6 @@
-import { Vector } from "./common";
 import { Point } from "@blockware/ui-web-types";
 
-export default class BasisCurve {
+export class BasisCurve {
     private _path: string[];
     private _line!: number;
     private _x0!: number;
@@ -92,7 +91,7 @@ export default class BasisCurve {
         this._line = 1 - this._line;
     }
 
-    point(p: Vector | Point) {
+    point(p: Point) {
         this.addPoint(p.x, p.y);
     }
 
