@@ -44,7 +44,6 @@ export function createHexagonPath(width: number, height: number, radius: number 
     const right = fromAngle(b.subtract(a).angle(), radius);
     const left = fromAngle(f.subtract(a).angle(), radius);
 
-
     return " M " + a.add(left) +
         " Q " + a + " " + a.add(right) +
         " L " + b.subtract(right) +
