@@ -25,19 +25,19 @@
         "prepublishOnly": "npm run build"
     },
     "peerDependencies": {
-        "@blockware/ui-web-types": "^0.0.1",
+        "@blockware/ui-web-types": "<2",
         "react": ">=18.0.0",
         "react-dom": ">=18.0.0"
     },
     "devDependencies": {
-        "@blockware/ui-web-types": "^0.0.26",
+        "@blockware/ui-web-types": "<2",
+        "@types/react": ">=18.0.0",
+        "@types/react-dom": ">=18.0.0",
+        "react": ">=18.0.0",
+        "react-dom": ">=18.0.0",
         "@rollup/plugin-commonjs": "^21.1.0",
         "@rollup/plugin-node-resolve": "^14.1.0",
         "@rollup/plugin-typescript": "^8.5.0",
-        "@types/react": "18.0.20",
-        "@types/react-dom": "18.0.6",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
         "rollup": "^2.79.0",
         "rollup-plugin-dts": "^4.2.2",
         "rollup-plugin-peer-deps-external": "^2.2.4",
