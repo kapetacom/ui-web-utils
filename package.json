@@ -1,5 +1,5 @@
 {
-    "name": "@blockware/ui-web-utils",
+    "name": "@kapeta/ui-web-utils",
     "version": "0.0.22",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -9,13 +9,13 @@
         "package.json",
         "README.md"
     ],
-    "description": "Utility functions for implementing blockware UI",
+    "description": "Utility functions for implementing Kapeta UI",
     "private": false,
     "publishConfig": {
         "access": "public"
     },
     "keywords": [
-        "blockware"
+        "kapeta"
     ],
     "license": "MIT",
     "scripts": {
