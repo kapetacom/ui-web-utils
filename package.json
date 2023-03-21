@@ -25,19 +25,19 @@
         "prepublishOnly": "npm run build"
     },
     "peerDependencies": {
-        "@blockware/ui-web-types": "<2",
+        "@kapeta/ui-web-types": "<2",
         "react": ">=18.0.0",
         "react-dom": ">=18.0.0"
     },
     "devDependencies": {
-        "@blockware/ui-web-types": "<2",
+        "@kapeta/ui-web-types": "^0.0.49",
+        "@rollup/plugin-commonjs": "^21.1.0",
+        "@rollup/plugin-node-resolve": "^14.1.0",
+        "@rollup/plugin-typescript": "^8.5.0",
         "@types/react": ">=18.0.0",
         "@types/react-dom": ">=18.0.0",
         "react": ">=18.0.0",
         "react-dom": ">=18.0.0",
-        "@rollup/plugin-commonjs": "^21.1.0",
-        "@rollup/plugin-node-resolve": "^14.1.0",
-        "@rollup/plugin-typescript": "^8.5.0",
         "rollup": "^2.79.0",
         "rollup-plugin-dts": "^4.2.2",
         "rollup-plugin-peer-deps-external": "^2.2.4",
