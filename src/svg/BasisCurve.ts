@@ -1,4 +1,4 @@
-import { Point } from "@blockware/ui-web-types";
+import { Point } from "@kapeta/ui-web-types";
 
 export class BasisCurve {
     private _path: string[];
