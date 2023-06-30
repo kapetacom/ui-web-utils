@@ -1,15 +1,18 @@
-export type ClassNameMap = {[key:string]:boolean};
+export type ClassNameMap = { [key: string]: boolean };
 
-type ClassNameVariants = string|string[]|ClassNameMap;
+type ClassNameVariants = string | string[] | ClassNameMap;
 
 type CheckerFunction = () => boolean;
 
-type Condition = boolean|CheckerFunction;
+type Condition = boolean | CheckerFunction;
 
-export function toggleClasses(defaultClasses: ClassNameVariants, toggledClasses: ClassNameVariants, condition: Condition):string {
-
+export function toggleClasses(
+    defaultClasses: ClassNameVariants,
+    toggledClasses: ClassNameVariants,
+    condition: Condition
+): string {
     let conditionMet = false;
-    if (typeof condition ===  'function') {
+    if (typeof condition === 'function') {
         conditionMet = condition();
     } else {
         conditionMet = condition;
@@ -22,7 +25,7 @@ export function toggleClasses(defaultClasses: ClassNameVariants, toggledClasses:
     return toClass(defaultClasses);
 }
 
-export function toClass(classNames: ClassNameVariants):string {
+export function toClass(classNames: ClassNameVariants): string {
     if (typeof classNames === 'string') {
         return classNames;
     }
@@ -31,9 +34,12 @@ export function toClass(classNames: ClassNameVariants):string {
         return classNames.join(' ');
     }
 
-    return Object.entries(classNames).filter(([,enabled]) => {
-        return enabled;
-    }).map(([className, enabled]) => {
-        return className;
-    }).join(' ');
+    return Object.entries(classNames)
+        .filter(([, enabled]) => {
+            return enabled;
+        })
+        .map(([className, enabled]) => {
+            return className;
+        })
+        .join(' ');
 }

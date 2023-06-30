@@ -1,5 +1,4 @@
-export function formatBytes(bytes:number):string {
-
+export function formatBytes(bytes: number): string {
     const KB_SIZE = 1024;
     const MB_SIZE = KB_SIZE * 1000;
     const GB_SIZE = MB_SIZE * 1000;
@@ -19,8 +18,7 @@ export function formatBytes(bytes:number):string {
     return `${Math.ceil(bytes / GB_SIZE)} Gb`;
 }
 
-
-export function getFileExtension(name:string) {
+export function getFileExtension(name: string) {
     const fileNameParts = name.split(/\./g);
     return '.' + fileNameParts[fileNameParts.length - 1].toLowerCase();
 }

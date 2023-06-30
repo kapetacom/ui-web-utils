@@ -1,5 +1,4 @@
 export class Vector {
-
     y: number = 0;
     x: number = 0;
     height: any = 400;
@@ -41,10 +40,6 @@ export class Vector {
     }
 }
 
-
 export function fromAngle(angle: number, magnitude: number) {
-    return new Vector(
-        magnitude * Math.cos(angle),
-        magnitude * Math.sin(angle)
-    );
+    return new Vector(magnitude * Math.cos(angle), magnitude * Math.sin(angle));
 }
