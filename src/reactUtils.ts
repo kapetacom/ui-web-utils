@@ -1,9 +1,9 @@
-import {ReactInstance} from "react";
-import {findDOMNode} from "react-dom";
+import { ReactInstance } from 'react';
+import { findDOMNode } from 'react-dom';
 
-export type DOMElement = HTMLElement|SVGElement;
+export type DOMElement = HTMLElement | SVGElement;
 
-export function asHTMLElement(instance: ReactInstance | null | undefined):DOMElement|null {
+export function asHTMLElement(instance: ReactInstance | null | undefined): DOMElement | null {
     if (!instance) {
         return null;
     }
@@ -20,8 +20,7 @@ export function asHTMLElement(instance: ReactInstance | null | undefined):DOMEle
     throw new Error('Failed to identify DOM element from ' + instance);
 }
 
-export function toDOMElement(instance: Element):DOMElement {
-
+export function toDOMElement(instance: Element): DOMElement {
     if (instance instanceof SVGElement) {
         return instance;
     }

@@ -227,7 +227,7 @@ function daysPerYear(ref) {
  * @return {Date}
  */
 function addToDate(ts, date) {
-    date = (date instanceof Date) || ((date !== null) && isFinite(date)) ? new Date(+date) : new Date();
+    date = date instanceof Date || (date !== null && isFinite(date)) ? new Date(+date) : new Date();
     if (!ts) {
         return date;
     }
@@ -429,7 +429,7 @@ let formatNumber;
  * @return {string}
  */
 function plurality(value, unit) {
-    return formatNumber(value) + ((value === 1) ? LABELS_SINGLUAR[unit] : LABELS_PLURAL[unit]);
+    return formatNumber(value) + (value === 1 ? LABELS_SINGLUAR[unit] : LABELS_PLURAL[unit]);
 }
 
 /**
@@ -449,8 +449,6 @@ let formatList;
  * @constructor
  */
 class Timespan {
-
-
     /**
      * Formats the Timespan as a sentence
      *
@@ -471,7 +469,6 @@ class Timespan {
         const last = LABEL_LAST + label.pop();
         return label.join(LABEL_DELIM) + last;
     }
-
 
     /**
      * Formats the Timespan as a sentence in HTML
@@ -499,7 +496,7 @@ class Timespan {
 
         const last = LABEL_LAST + label.pop();
         return label.join(LABEL_DELIM) + last;
-    };
+    }
 
     /**
      * Applies the Timespan to the given date
@@ -509,9 +506,8 @@ class Timespan {
      */
     addTo(date) {
         return addToDate(this, date);
-    };
+    }
 }
-
 
 /**
  * Formats the entries as English labels
@@ -782,7 +778,6 @@ function ripple(ts) {
         x = ceil(-ts.milliseconds / MILLISECONDS_PER_SECOND);
         ts.seconds -= x;
         ts.milliseconds += x * MILLISECONDS_PER_SECOND;
-
     } else if (ts.milliseconds >= MILLISECONDS_PER_SECOND) {
         // ripple milliseconds up to seconds
         ts.seconds += floor(ts.milliseconds / MILLISECONDS_PER_SECOND);
@@ -794,7 +789,6 @@ function ripple(ts) {
         x = ceil(-ts.seconds / SECONDS_PER_MINUTE);
         ts.minutes -= x;
         ts.seconds += x * SECONDS_PER_MINUTE;
-
     } else if (ts.seconds >= SECONDS_PER_MINUTE) {
         // ripple seconds up to minutes
         ts.minutes += floor(ts.seconds / SECONDS_PER_MINUTE);
@@ -806,7 +800,6 @@ function ripple(ts) {
         x = ceil(-ts.minutes / MINUTES_PER_HOUR);
         ts.hours -= x;
         ts.minutes += x * MINUTES_PER_HOUR;
-
     } else if (ts.minutes >= MINUTES_PER_HOUR) {
         // ripple minutes up to hours
         ts.hours += floor(ts.minutes / MINUTES_PER_HOUR);
@@ -818,7 +811,6 @@ function ripple(ts) {
         x = ceil(-ts.hours / HOURS_PER_DAY);
         ts.days -= x;
         ts.hours += x * HOURS_PER_DAY;
-
     } else if (ts.hours >= HOURS_PER_DAY) {
         // ripple hours up to days
         ts.days += floor(ts.hours / HOURS_PER_DAY);
@@ -846,7 +838,6 @@ function ripple(ts) {
         x = ceil(-ts.months / MONTHS_PER_YEAR);
         ts.years -= x;
         ts.months += x * MONTHS_PER_YEAR;
-
     } else if (ts.months >= MONTHS_PER_YEAR) {
         // ripple months up to years
         ts.years += floor(ts.months / MONTHS_PER_YEAR);
@@ -888,43 +879,39 @@ function pruneUnits(ts, units, max, digits) {
     let count = 0;
 
     // Calc from largest unit to smallest to prevent underflow
-    if (!(units & MILLENNIA) || (count >= max)) {
+    if (!(units & MILLENNIA) || count >= max) {
         // ripple millennia down to centuries
         ts.centuries += ts.millennia * CENTURIES_PER_MILLENNIUM;
         delete ts.millennia;
-
     } else if (ts.millennia) {
         count++;
     }
 
-    if (!(units & CENTURIES) || (count >= max)) {
+    if (!(units & CENTURIES) || count >= max) {
         // ripple centuries down to decades
         ts.decades += ts.centuries * DECADES_PER_CENTURY;
         delete ts.centuries;
-
     } else if (ts.centuries) {
         count++;
     }
 
-    if (!(units & DECADES) || (count >= max)) {
+    if (!(units & DECADES) || count >= max) {
         // ripple decades down to years
         ts.years += ts.decades * YEARS_PER_DECADE;
         delete ts.decades;
-
     } else if (ts.decades) {
         count++;
     }
 
-    if (!(units & YEARS) || (count >= max)) {
+    if (!(units & YEARS) || count >= max) {
         // ripple years down to months
         ts.months += ts.years * MONTHS_PER_YEAR;
         delete ts.years;
-
     } else if (ts.years) {
         count++;
     }
 
-    if (!(units & MONTHS) || (count >= max)) {
+    if (!(units & MONTHS) || count >= max) {
         // ripple months down to days
         if (ts.months) {
             ts.days += borrowMonths(ts.refMonth, ts.months);
@@ -936,59 +923,53 @@ function pruneUnits(ts, units, max, digits) {
             ts.weeks += floor(ts.days / DAYS_PER_WEEK);
             ts.days %= DAYS_PER_WEEK;
         }
-
     } else if (ts.months) {
         count++;
     }
 
-    if (!(units & WEEKS) || (count >= max)) {
+    if (!(units & WEEKS) || count >= max) {
         // ripple weeks down to days
         ts.days += ts.weeks * DAYS_PER_WEEK;
         delete ts.weeks;
-
     } else if (ts.weeks) {
         count++;
     }
 
-    if (!(units & DAYS) || (count >= max)) {
+    if (!(units & DAYS) || count >= max) {
         //ripple days down to hours
         ts.hours += ts.days * HOURS_PER_DAY;
         delete ts.days;
-
     } else if (ts.days) {
         count++;
     }
 
-    if (!(units & HOURS) || (count >= max)) {
+    if (!(units & HOURS) || count >= max) {
         // ripple hours down to minutes
         ts.minutes += ts.hours * MINUTES_PER_HOUR;
         delete ts.hours;
-
     } else if (ts.hours) {
         count++;
     }
 
-    if (!(units & MINUTES) || (count >= max)) {
+    if (!(units & MINUTES) || count >= max) {
         // ripple minutes down to seconds
         ts.seconds += ts.minutes * SECONDS_PER_MINUTE;
         delete ts.minutes;
-
     } else if (ts.minutes) {
         count++;
     }
 
-    if (!(units & SECONDS) || (count >= max)) {
+    if (!(units & SECONDS) || count >= max) {
         // ripple seconds down to milliseconds
         ts.milliseconds += ts.seconds * MILLISECONDS_PER_SECOND;
         delete ts.seconds;
-
     } else if (ts.seconds) {
         count++;
     }
 
     // nothing to ripple milliseconds down to
     // so ripple back up to smallest existing unit as a fractional value
-    if (!(units & MILLISECONDS) || (count >= max)) {
+    if (!(units & MILLISECONDS) || count >= max) {
         fractional(ts, digits);
     }
 }
@@ -1037,7 +1018,6 @@ function populate(ts, start, end, units, max, digits) {
 
         ripple(ts);
         pruneUnits(ts, units, max, digits);
-
     } finally {
         delete ts.refMonth;
     }
@@ -1099,22 +1079,21 @@ export function countdown(start, end, units, max, digits) {
     // ensure some units or use defaults
     units = +units || DEFAULTS;
     // max must be positive
-    max = (max > 0) ? max : NaN;
+    max = max > 0 ? max : NaN;
     // clamp digits to an integer between [0, 20]
-    digits = (digits > 0) ? (digits < 20) ? Math.round(digits) : 20 : 0;
+    digits = digits > 0 ? (digits < 20 ? Math.round(digits) : 20) : 0;
 
     // ensure start date
     let startTS = null;
     if ('function' === typeof start) {
         callback = start;
         start = null;
-
     } else if (!(start instanceof Date)) {
-        if ((start !== null) && isFinite(start)) {
+        if (start !== null && isFinite(start)) {
             start = new Date(+start);
         } else {
             if ('object' === typeof startTS) {
-                startTS = /** @type{Timespan} */(start);
+                startTS = /** @type{Timespan} */ start;
             }
             start = null;
         }
@@ -1125,13 +1104,12 @@ export function countdown(start, end, units, max, digits) {
     if ('function' === typeof end) {
         callback = end;
         end = null;
-
     } else if (!(end instanceof Date)) {
-        if ((end !== null) && isFinite(end)) {
+        if (end !== null && isFinite(end)) {
             end = new Date(+end);
         } else {
             if ('object' === typeof end) {
-                endTS = /** @type{Timespan} */(end);
+                endTS = /** @type{Timespan} */ end;
             }
             end = null;
         }
@@ -1151,7 +1129,14 @@ export function countdown(start, end, units, max, digits) {
     }
 
     if (!callback) {
-        return populate(new Timespan(), /** @type{Date} */(start), /** @type{Date} */(end), /** @type{number} */(units), /** @type{number} */(max), /** @type{number} */(digits));
+        return populate(
+            new Timespan(),
+            /** @type{Date} */ start,
+            /** @type{Date} */ end,
+            /** @type{number} */ units,
+            /** @type{number} */ max,
+            /** @type{number} */ digits
+        );
     }
 
     // base delay off units
@@ -1159,7 +1144,14 @@ export function countdown(start, end, units, max, digits) {
         timerId,
         fn = function () {
             callback(
-                populate(new Timespan(), /** @type{Date} */(start), /** @type{Date} */(end), /** @type{number} */(units), /** @type{number} */(max), /** @type{number} */(digits)),
+                populate(
+                    new Timespan(),
+                    /** @type{Date} */ start,
+                    /** @type{Date} */ end,
+                    /** @type{number} */ units,
+                    /** @type{number} */ max,
+                    /** @type{number} */ digits
+                ),
                 timerId
             );
         };
@@ -1257,14 +1249,15 @@ countdown.DEFAULTS = DEFAULTS;
  * @const
  * @type {number}
  */
-countdown.ALL = MILLENNIA | CENTURIES | DECADES | YEARS | MONTHS | WEEKS | DAYS | HOURS | MINUTES | SECONDS | MILLISECONDS;
+countdown.ALL =
+    MILLENNIA | CENTURIES | DECADES | YEARS | MONTHS | WEEKS | DAYS | HOURS | MINUTES | SECONDS | MILLISECONDS;
 
 /**
  * Customize the format settings.
  * @public
  * @param {Object} format settings object
  */
-const setFormat = countdown.setFormat = function (format) {
+const setFormat = (countdown.setFormat = function (format) {
     if (!format) {
         return;
     }
@@ -1301,15 +1294,18 @@ const setFormat = countdown.setFormat = function (format) {
     if ('function' === typeof format.formatter) {
         formatter = format.formatter;
     }
-};
+});
 
 /**
  * Revert to the default formatting.
  * @public
  */
-const resetFormat = countdown.resetFormat = function () {
-    LABELS_SINGLUAR = ' millisecond| second| minute| hour| day| week| month| year| decade| century| millennium'.split('|');
-    LABELS_PLURAL = ' milliseconds| seconds| minutes| hours| days| weeks| months| years| decades| centuries| millennia'.split('|');
+const resetFormat = (countdown.resetFormat = function () {
+    LABELS_SINGLUAR = ' millisecond| second| minute| hour| day| week| month| year| decade| century| millennium'.split(
+        '|'
+    );
+    LABELS_PLURAL =
+        ' milliseconds| seconds| minutes| hours| days| weeks| months| years| decades| centuries| millennia'.split('|');
     LABEL_LAST = ' and ';
     LABEL_DELIM = ', ';
     LABEL_NOW = '';
@@ -1317,7 +1313,7 @@ const resetFormat = countdown.resetFormat = function () {
         return value;
     };
     formatter = plurality;
-};
+});
 
 /**
  * Override the unit labels.
@@ -1339,7 +1335,7 @@ countdown.setLabels = function (singular, plural, last, delim, empty, formatNumb
         delim: delim,
         empty: empty,
         formatNumber: formatNumber,
-        formatter: formatter
+        formatter: formatter,
     });
 };
 
@@ -1351,4 +1347,3 @@ countdown.setLabels = function (singular, plural, last, delim, empty, formatNumb
 countdown.resetLabels = resetFormat;
 
 resetFormat();
-

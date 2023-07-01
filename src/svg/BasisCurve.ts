@@ -1,4 +1,4 @@
-import { Point } from "@kapeta/ui-web-types";
+import { Point } from '@kapeta/ui-web-types';
 
 export class BasisCurve {
     private _path: string[];
@@ -25,23 +25,16 @@ export class BasisCurve {
     }
 
     private bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number) {
-        this._path.push(
-            `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x} ${y}`
-        );
+        this._path.push(`C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x} ${y}`);
     }
 
     private lineTo(x: number, y: number) {
-        this._path.push(
-            `L ${x} ${y}`
-        );
+        this._path.push(`L ${x} ${y}`);
     }
 
     private moveTo(x: number, y: number) {
-        this._path.push(
-            `M ${x} ${y}`
-        );
+        this._path.push(`M ${x} ${y}`);
     }
-
 
     private addPoint(x: number, y: number) {
         x = +x;
@@ -72,8 +65,7 @@ export class BasisCurve {
     }
 
     lineStart() {
-        this._x0 = this._x1 =
-            this._y0 = this._y1 = NaN;
+        this._x0 = this._x1 = this._y0 = this._y1 = NaN;
         this._point = 0;
     }
 
