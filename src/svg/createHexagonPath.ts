@@ -24,14 +24,11 @@ export function createHexagonPath(
     let a, b, c, d, e, f, level;
 
     if (orientation === Orientation.HORIZONTAL) {
-        width -= pointSize; //We do this to make sure the hexagon gets the exact height we want
-        level = new Vector(radius, 0);
-        a = new Vector(0, height / 2);
-        b = new Vector(pointSize, 0);
-        c = new Vector((width * 3) / 4 + pointSize, 0);
-        d = new Vector((width * 3) / 4 + pointSize * 2, height / 2);
-        e = new Vector((width * 3) / 4 + pointSize, height);
-        f = new Vector(pointSize, height);
+        // Horizontal is the same as vertical, but with all the x/y coords flipped:
+        return createHexagonPath(height, width, radius, Orientation.VERTICAL, pointSize).replaceAll(
+            /(\d+[.0-9]*),(\d+[.0-9]*)/g,
+            '$2,$1'
+        );
     } else {
         height -= pointSize; //We do this to make sure the hexagon gets the exact height we want
         /**
