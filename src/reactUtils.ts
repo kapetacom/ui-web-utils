@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 import { ReactInstance } from 'react';
 import { findDOMNode } from 'react-dom';
 

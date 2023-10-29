@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 //Adjusted from https://raw.githubusercontent.com/mckamey/countdownjs/master/countdown.js
 
 'use strict';

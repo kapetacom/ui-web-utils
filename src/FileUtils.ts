@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 export function formatBytes(bytes: number): string {
     const KB_SIZE = 1024;
     const MB_SIZE = KB_SIZE * 1000;

@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 import { Point } from '@kapeta/ui-web-types';
 
 export class BasisCurve {
