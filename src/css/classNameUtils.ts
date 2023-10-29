@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 export type ClassNameMap = { [key: string]: boolean };
 
 type ClassNameVariants = string | string[] | ClassNameMap;

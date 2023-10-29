@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 var roundPathCorners = function (pathString: any, radius: number, useFractionalRadius: any) {
     function moveTowardsLength(movingPoint: any, targetPoint: any, amount: any) {
         var width = targetPoint.x - movingPoint.x;

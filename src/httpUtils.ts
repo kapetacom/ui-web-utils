@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 const CODES: { [key: string]: string } = {
     '100': 'Continue',
     '101': 'Switching Protocols',

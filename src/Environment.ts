@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Kapeta Inc.
+ * SPDX-License-Identifier: MIT
+ */
+
 export function isElectron() {
     // @ts-ignore
     return window && window.process && window.process.versions && !!window.process.versions['electron'];
