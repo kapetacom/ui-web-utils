@@ -26,7 +26,8 @@
     "scripts": {
         "start": "rollup -c -w",
         "prebuild": "rm -rf dist",
-        "build": "rollup -c",
+        "build": "npm run lint && rollup -c",
+        "lint": "tsc --noEmit",
         "test": "echo no tests yet",
         "prepublishOnly": "npm run build",
         "format": "prettier --write ."
