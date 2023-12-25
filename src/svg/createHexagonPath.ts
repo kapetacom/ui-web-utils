@@ -25,12 +25,12 @@ export function createHexagonPath(
     radius: number = 5,
     orientation: number = 0,
     pointSize: number = 40
-) {
+): string {
     let a, b, c, d, e, f, level;
 
     if (orientation === Orientation.HORIZONTAL) {
         // Horizontal is the same as vertical, but with all the x/y coords flipped:
-        return createHexagonPath(height, width, radius, Orientation.VERTICAL, pointSize).replaceAll(
+        return createHexagonPath(height, width, radius, Orientation.VERTICAL, pointSize).replace(
             /(\d+[.0-9]*),(\d+[.0-9]*)/g,
             '$2,$1'
         );
